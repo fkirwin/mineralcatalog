@@ -1,18 +1,19 @@
-{% load static from staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>Macky's Minerals: A magnificant catalog of minerals</title>
+      <title>I smoke rocks</title>
       <meta name="description" content="">
-      <meta name="author" content="">
+      <meta name="author" content="Joe Rogan">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,500' rel='stylesheet' type='text/css'>
       <link href='https://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>
-      <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+      <link rel="stylesheet" href="{% static 'css/global.css' %}">
     </head>
     <body>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
     </body>
 </html>

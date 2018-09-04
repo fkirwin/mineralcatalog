@@ -10,7 +10,12 @@ https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
+from minerals.models import Mineral
 
+try:
+    Mineral.ingest_data_from_json_file()
+except:
+    pass
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mineralcatalog.settings')
 
 application = get_wsgi_application()
