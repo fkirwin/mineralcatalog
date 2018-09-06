@@ -5,6 +5,7 @@ from django.db import models
 
 MINERAL_DATA_SOURCE = "/assets/data/minerals.json"
 
+
 class Mineral(models.Model):
     name = models.CharField(unique=True, max_length=255)
     image_filename = models.FileField(blank=True, default='')
@@ -27,7 +28,6 @@ class Mineral(models.Model):
     crystal_habit = models.CharField(blank=True, default='', max_length=255)
     specific_gravity = models.CharField(blank=True, default='', max_length=255)
 
-
     def __str__(self):
         return self.name
 
@@ -36,9 +36,9 @@ class Mineral(models.Model):
         with open(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+ MINERAL_DATA_SOURCE, encoding="utf8") as source:
             json_string = source.read()
             for each in json.loads(json_string):
-                each = {k.replace(' ','_'):v for k,v in each.items()}
+                each = {k.replace(' ', '_'): v for k, v in each.items()}
                 mineral = Mineral(**each)
                 try:
                     mineral.save()
-                except:#Don't care.  Just put the records in there.
+                except:  #Don't care.  Just put the records in there without failing.
                     pass
