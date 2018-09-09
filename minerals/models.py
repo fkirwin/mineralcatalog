@@ -2,6 +2,7 @@ import json
 import os
 
 from django.db import models
+from django.db import transaction
 
 MINERAL_DATA_SOURCE = "/assets/data/minerals.json"
 
@@ -39,6 +40,8 @@ class Mineral(models.Model):
                 each = {k.replace(' ', '_'): v for k, v in each.items()}
                 mineral = Mineral(**each)
                 try:
-                    mineral.save()
-                except:  #Don't care.  Just put the records in there without failing.
-                    pass
+                    with transaction.atomic():
+                        mineral.save()
+                except Exception as e:  #Don't care.  Just put the records in there without failing.
+                    print(e)
+        return True
